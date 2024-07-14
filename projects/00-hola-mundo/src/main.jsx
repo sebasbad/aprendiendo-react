@@ -1,5 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-const root  = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<button>Hola button</button>)
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+  <React.Fragment>
+    <button>Hola button</button>
+    <button>Hola button</button>
+  </React.Fragment>
+)
