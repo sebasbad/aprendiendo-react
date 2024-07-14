@@ -3,7 +3,17 @@ import ReactDOM from 'react-dom/client'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
-const createButton = ({text}) => {
+/*
+PascalCase
+camelCase
+snake_case
+kebab-case
+
+Los componentes React son "funciones" assignadas a una constante/variable con PascalCase
+Si no usamos PascalCase, los componentes se renderizan pero como elementos HTML pq React non puede saber si en el fututo habrá un componente HTML nativo llamado así
+*/
+
+const Button = ({text}) => {
   return (
     <button>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -16,8 +26,8 @@ const createButton = ({text}) => {
 
 root.render(
   <React.Fragment>
-    {createButton({text: 'Button 1'})}
-    {createButton({text: 'Button 2'})}
-    {createButton({text: 'Button 3'})}
+    <Button text="Button 1"></Button>
+    <Button text="Button 2"></Button>
+    <Button text="Button 3"></Button>
   </React.Fragment>
 )
