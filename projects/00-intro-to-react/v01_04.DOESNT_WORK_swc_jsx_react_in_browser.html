@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX to JS Transpilation with SWC</title>
+    <!-- Include SWC JavaScript bindings -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@swc/wasm-web@1.2.164/wasm-web.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@swc/wasm-web@1.6.7/wasm.js"></script>
+    <!-- Include React and ReactDOM from a CDN -->
+    <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/jsx" id="jsx-script">
+        // Your JSX code here
+        const App = () => (
+            <div>
+                <h1>Hello, world!</h1>
+            </div>
+        );
+
+        // Rendering the JSX component to the DOM
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+
+    <script>
+        async function transpileAndExecute() {
+            // Initialize SWC
+            await loadSwcWasm();
+
+            // Get the JSX code from the script tag
+            const jsxCode = document.getElementById('jsx-script').textContent;
+
+            // Transpile the JSX code to JavaScript
+            const output = window.swc.transformSync(jsxCode, {
+                jsc: {
+                    parser: {
+                        syntax: "ecmascript",
+                        jsx: true
+                    },
+                    target: "es2015"
+                },
+                module: {
+                    type: "commonjs"
+                }
+            });
+
+            // Create a new script element to run the transpiled code
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.text = output.code;
+            document.body.appendChild(script);
+        }
+
+        async function loadSwcWasm() {
+            // Load the SWC WebAssembly module
+            //const wasmUrl = 'https://cdn.jsdelivr.net/npm/@swc/wasm-web@1.2.164/wasm-web_bg.wasm';
+            const wasmUrl = 'https://cdn.jsdelivr.net/npm/@swc/wasm-web@1.6.7/wasm_bg.wasm';
+            await window.swc.default(wasmUrl).catch(console.error);
+        }
+
+        // Wait for SWC to be available on the window object
+        if (typeof window.swc === 'undefined') {
+            window.addEventListener('swcLoaded', transpileAndExecute);
+        } else {
+            transpileAndExecute().catch(console.error);
+        }
+    </script>
+
+    <script>
+        // Ensure the SWC module is available globally
+        window.addEventListener('DOMContentLoaded', async () => {
+            if (typeof window.swc === 'undefined') {
+                await loadSwcWasm();
+                window.dispatchEvent(new Event('swcLoaded'));
+            }
+        });
+    </script>
+</body>
+</html>

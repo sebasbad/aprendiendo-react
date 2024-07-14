@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX to JS Transpilation</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        // Your JSX code here
+        const App = () => (
+            <div>
+                <h1>Hello, world!</h1>
+            </div>
+        );
+
+        // Rendering the JSX code to the DOM
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+    
+    <!-- Include React and ReactDOM from a CDN -->
+    <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+</body>
+</html>
