@@ -1,6 +1,6 @@
 export function App () {
     return (
-        <article>
+        <article style={{ display: 'flex'}}>
             <header>
                 <img alt="El avatar de duckduckgo/gummibeer.dev" src="https://unavatar.io/duckduckgo/gummibeer.dev" />
                 <div>
