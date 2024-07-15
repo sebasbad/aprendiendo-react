@@ -5,8 +5,8 @@ export function App () {
     return (
         <>
             <TwitterFollowCard userName="duckduckgo/gummibeer.dev" name="Gummi Beer Dev" />
-            <TwitterFollowCard userName="duckduckgo/gummibeer.dev" name="Gummi Beer Dev" />
-            <TwitterFollowCard userName="duckduckgo/gummibeer.dev" name="Gummi Beer Dev" />
+            <TwitterFollowCard userName="pikachu" name="Pi Ka Chu" />
+            <TwitterFollowCard userName="duckduckgo" name="Duck Duck Go" />
         </>
     )
 }
