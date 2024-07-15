@@ -1,5 +1,16 @@
 export function App () {
     return (
-        <div>Twitter Card</div>
+        <article>
+            <header>
+                <img alt="El avatar de duckduckgo/gummibeer.dev" src="https://unavatar.io/duckduckgo/gummibeer.dev" />
+                <div>
+                    <strong>Gummi Beer Dev</strong>
+                    <span>@gummibeer.dev</span>
+                </div>
+            </header>
+            <aside>
+                <button>Seguir</button>
+            </aside>
+        </article>
     )
 }
