@@ -1,6 +1,8 @@
+import './App.css'
+
 export function App () {
     return (
-        <article style={{ display: 'flex', alignItems: 'center', color: '#fff'}}>
+        <article>
             <header>
                 <img alt="El avatar de duckduckgo/gummibeer.dev" src="https://unavatar.io/duckduckgo/gummibeer.dev" />
                 <div>
