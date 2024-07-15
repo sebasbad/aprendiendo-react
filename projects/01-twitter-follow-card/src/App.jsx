@@ -13,7 +13,7 @@ export function App () {
             <TwitterFollowCard isFollowing userName="duckduckgo">
                 Duck Duck Go
             </TwitterFollowCard>
-            <TwitterFollowCard isFollowing userName="brave">
+            <TwitterFollowCard isFollowing>
                 Brave
             </TwitterFollowCard>
         </section>
