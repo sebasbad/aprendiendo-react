@@ -5,15 +5,16 @@ export function App () {
     return (
         <section className='App'>
             <TwitterFollowCard isFollowing userName="duckduckgo/gummibeer.dev">
-                <TwitterFollowCard isFollowing={false} userName="pikachu">
-                    <strong>Pi Ka Chu</strong>
-                </TwitterFollowCard>    
+                Gummi Beer Dev
+            </TwitterFollowCard>
+            <TwitterFollowCard isFollowing={false} userName="pikachu">
+                Pi Ka Chu
             </TwitterFollowCard>
             <TwitterFollowCard isFollowing userName="duckduckgo">
-                <strong>Duck Duck Go</strong>
+                Duck Duck Go
             </TwitterFollowCard>
             <TwitterFollowCard isFollowing userName="brave">
-                <strong>Brave</strong>
+                Brave
             </TwitterFollowCard>
         </section>
     )
