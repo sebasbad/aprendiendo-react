@@ -1,5 +1,10 @@
 export function TwitterFollowCard ({ children, userName = 'unknown', isFollowing}) {
     console.log(isFollowing)
+    const text = isFollowing ? 'Siguiendo' : 'Seguir'
+    const buttonClassName = isFollowing 
+        ? 'tw-followCard-button is-following' 
+        : 'tw-followCard-button'
+
     return (
         <article className='tw-followCard'>
             <header className='tw-followCard-header'>
@@ -13,7 +18,7 @@ export function TwitterFollowCard ({ children, userName = 'unknown', isFollowing
                 </div>
             </header>
             <aside>
-                <button className='tw-followCard-button'>Seguir</button>
+                <button className={buttonClassName}>{text}</button>
             </aside>
         </article>
     )
