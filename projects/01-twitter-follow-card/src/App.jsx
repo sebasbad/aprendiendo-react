@@ -3,25 +3,21 @@ import './App.css'
 import { TwitterFollowCard } from './TwitterFollowCard'
 
 export function App () {
-    const [name, setName] = useState('pikachu')
-
-    console.log('[App] render with name: ', name)
 
     return (
         <section className='App'>
-            <TwitterFollowCard isFollowing userName="duckduckgo/gummibeer.dev">
+            <TwitterFollowCard userName="duckduckgo/gummibeer.dev" initialIsFollowing>
                 Gummi Beer Dev
             </TwitterFollowCard>
-            <TwitterFollowCard isFollowing={false} userName={name}>
+            <TwitterFollowCard userName="pikachu" initialIsFollowing={false}>
                 Pi Ka Chu
             </TwitterFollowCard>
-            <TwitterFollowCard isFollowing userName="duckduckgo">
+            <TwitterFollowCard userName="duckduckgo" initialIsFollowing>
                 Duck Duck Go
             </TwitterFollowCard>
-            <TwitterFollowCard isFollowing>
+            <TwitterFollowCard initialIsFollowing>
                 Brave
             </TwitterFollowCard>
-            <button onClick={() => setName('rust')}>Cambiar nombre</button>
         </section>
     )
 }
