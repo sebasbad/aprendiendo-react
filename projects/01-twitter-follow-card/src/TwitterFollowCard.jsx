@@ -4,6 +4,8 @@ export function TwitterFollowCard ({ children, userName = 'unknown'}) {
     const [isFollowing, setIsFollowing] = useState(false)
 
     console.log(isFollowing)
+    console.log('[App] render with userName: ', userName)
+
     const text = isFollowing ? 'Siguiendo' : 'Seguir'
     const buttonClassName = isFollowing 
         ? 'tw-followCard-button is-following' 
