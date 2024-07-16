@@ -2,14 +2,12 @@ import './App.css'
 import { TwitterFollowCard } from './TwitterFollowCard'
 
 export function App () {
-    const pikachu = {isFollowing: false, userName: "pikachu"}
-
     return (
         <section className='App'>
             <TwitterFollowCard isFollowing userName="duckduckgo/gummibeer.dev">
                 Gummi Beer Dev
             </TwitterFollowCard>
-            <TwitterFollowCard {...pikachu}>
+            <TwitterFollowCard isFollowing={false} userName="pikachu">
                 Pi Ka Chu
             </TwitterFollowCard>
             <TwitterFollowCard isFollowing userName="duckduckgo">
