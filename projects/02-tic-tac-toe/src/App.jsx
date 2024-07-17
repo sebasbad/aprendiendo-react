@@ -5,14 +5,16 @@ const TURNS = {
   O: 'o'
 }
 
-const Square = ({children, updateBoard, index}) => {
+const Square = ({children, isSelected, updateBoard, index}) => {
+  const className = `square ${isSelected ? 'is-selected' : ''}`
   return (
-    <div className="square">{children}</div>
+    <div className={className}>{children}</div>
   )
 }
 
 function App() {
-  const [board, setBoard] = useState(['x', 'x', 'x', 'o', 'o', 'o', 'x', 'o', 'x'])
+  const [board, setBoard] = useState(Array(9).fill(null))
+  const [turn, setTurn] = useState(TURNS.X)
 
   return (
     <main className="board">
@@ -30,6 +32,10 @@ function App() {
             )
           })
         }
+      </section>
+      <section className='turn'>
+        <Square isSelected={turn === TURNS.X}>{TURNS.X}</Square>
+        <Square isSelected={turn === TURNS.O}>{TURNS.O}</Square>
       </section>
     </main>
   )
