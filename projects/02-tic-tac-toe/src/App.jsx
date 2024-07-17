@@ -71,8 +71,13 @@ function App() {
     // revisar si hay un ganador
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
+      // actualiza el estado de manera asínncrona 
+      // (NO bloquea la ejecución de la siguiente línea)
       setWinner(newWinner)
-    }
+      // winner puede ser null en este punto
+      console.log(winner)
+      alert(`El ganador es: ${newWinner}`)
+    } // TODO: check if game is over
   }
 
   return (
