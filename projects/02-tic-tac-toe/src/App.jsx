@@ -2,30 +2,13 @@ import {useState} from "react"
 import connfetti from "canvas-confetti"
 import { Square } from "./components/Square"
 import { TURNS, WINNER_COMBOS } from "./constants"
+import { checkWinner } from "./logic/board"
 
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null))
   const [turn, setTurn] = useState(TURNS.X)
   // null: no hay ganador, false: empate
   const [winner, setWinner] = useState(null)
-
-  const checkWinner = (boardToCheck) => {
-    // revisamos todas las combinaciones ganadoras
-    // para ver si X u O ganó
-    for(const combo of WINNER_COMBOS) {
-      const [a, b, c] = combo
-      if (
-        boardToCheck[a] &&
-        boardToCheck[a] === boardToCheck[b] &&
-        boardToCheck[a] === boardToCheck[c]
-      ) {
-        return boardToCheck[a]
-      }
-    }
-
-    // si no hay ganador
-    return null
-  }
 
   const resetGame = () => {
     setBoard(Array(9).fill(null))
