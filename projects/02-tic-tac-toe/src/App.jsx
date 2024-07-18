@@ -1,9 +1,9 @@
 import {useState} from "react"
 import connfetti from "canvas-confetti"
-import { Square } from "./components/Square"
-import { TURNS } from "./constants"
-import { checkWinnerFrom, checkEndGame } from "./logic/board"
-import { WinnerModal } from "./components/WinnerModal"
+import { Square } from "./components/Square.jsx"
+import { TURNS } from "./constants.js"
+import { checkWinnerFrom, checkEndGame } from "./logic/board.js"
+import { WinnerModal } from "./components/WinnerModal.jsx"
 
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null))
