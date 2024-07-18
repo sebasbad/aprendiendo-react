@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useState} from "react"
+import connfetti from "canvas-confetti"
 
 const TURNS = {
   X: 'x',
@@ -85,6 +86,7 @@ function App() {
     // revisar si hay un ganador
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
+      connfetti()
       // actualiza el estado de manera asínncrona 
       // (NO bloquea la ejecución de la siguiente línea)
       setWinner(newWinner)
