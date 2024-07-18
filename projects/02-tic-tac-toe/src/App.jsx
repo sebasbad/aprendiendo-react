@@ -1,8 +1,8 @@
 import {useState} from "react"
 import connfetti from "canvas-confetti"
 import { Square } from "./components/Square"
-import { TURNS, WINNER_COMBOS } from "./constants"
-import { checkWinner } from "./logic/board"
+import { TURNS } from "./constants"
+import { checkWinnerFrom } from "./logic/board"
 
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null))
@@ -39,7 +39,7 @@ function App() {
     setTurn(newTurn)
 
     // revisar si hay un ganador
-    const newWinner = checkWinner(newBoard)
+    const newWinner = checkWinnerFrom(newBoard)
     if (newWinner) {
       connfetti()
       // actualiza el estado de manera asínncrona 
