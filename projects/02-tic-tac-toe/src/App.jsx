@@ -6,16 +6,22 @@ import { checkWinnerFrom, checkEndGame } from "./logic/board.js"
 import { WinnerModal } from "./components/WinnerModal.jsx"
 
 function App() {
+  console.log('App - render')
   // IMPORTANTE: useState no debe estar dentro de if, while, loop, etc.
   // siempre se debe ejecutar en las mismas líneas del cuerpo del componente
   // pq react se guarda las posiciones en las que se ejecuta
   //const [board, setBoard] = useState(Array(9).fill(null))
   // podemos pasarle una función al useState
   const [board, setBoard] = useState(() => {
+    console.log('App - inicializar estado del board')
+    // WARNING: Local storate es muy lento, síncrono y bloquea
     const boardFromStorage = window.localStorage.getItem('board')
     return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
   })
-  const [turn, setTurn] = useState(TURNS.X)
+  const [turn, setTurn] = useState(() => {
+    const turnFromStorage = window.localStorage.getItem('turn')
+    return turnFromStorage ?? TURNS.X
+  })
   // null: no hay ganador, false: empate
   const [winner, setWinner] = useState(null)
 
