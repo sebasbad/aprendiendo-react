@@ -30,6 +30,9 @@ function App() {
     setTurn(TURNS.X)
     // null: no hay ganador, false: empate
     setWinner(null)
+
+    window.localStorage.removeItem('board')
+    window.localStorage.removeItem('turn')
   }
 
   const updateBoard = (index) => {
