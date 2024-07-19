@@ -6,7 +6,15 @@ import { checkWinnerFrom, checkEndGame } from "./logic/board.js"
 import { WinnerModal } from "./components/WinnerModal.jsx"
 
 function App() {
-  const [board, setBoard] = useState(Array(9).fill(null))
+  // IMPORTANTE: useState no debe estar dentro de if, while, loop, etc.
+  // siempre se debe ejecutar en las mismas líneas del cuerpo del componente
+  // pq react se guarda las posiciones en las que se ejecuta
+  //const [board, setBoard] = useState(Array(9).fill(null))
+  // podemos pasarle una función al useState
+  const [board, setBoard] = useState(() => {
+    const boardFromStorage = window.localStorage.getItem('board')
+    return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
+  })
   const [turn, setTurn] = useState(TURNS.X)
   // null: no hay ganador, false: empate
   const [winner, setWinner] = useState(null)
@@ -31,7 +39,11 @@ function App() {
     // cambiar el turno
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
-
+    
+    // guardar aquí la partida
+    window.localStorage.setItem('board', JSON.stringify(newBoard))
+    window.localStorage.setItem('turn', newTurn)
+    
     // revisar si hay un ganador
     const newWinner = checkWinnerFrom(newBoard)
     if (newWinner) {
