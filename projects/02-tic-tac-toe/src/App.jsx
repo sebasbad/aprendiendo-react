@@ -14,6 +14,7 @@ function App() {
   //const [board, setBoard] = useState(Array(9).fill(null))
   // podemos pasarle una función al useState
   const [board, setBoard] = useState(() => {
+    // el estado sólo se inicializa una vez
     console.log('App - inicializar estado del board')
     // WARNING: Local storate es muy lento, síncrono y bloquea
     const boardFromStorage = window.localStorage.getItem('board')
