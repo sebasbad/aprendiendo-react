@@ -4,7 +4,9 @@
   "description": "[⚛️ CURSO DE REACT 2024 - YouTube](https://www.youtube.com/playlist?list=PLUofhDIg_38q4D0xNWp7FEHOTcZhjWJ29)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "./node_modules/.bin/eslint .",
+    "eslint-fix": "./node_modules/.bin/eslint . --fix"
   },
   "keywords": [],
   "author": "",
