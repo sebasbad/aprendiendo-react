@@ -21,7 +21,8 @@ function App () {
     <main>
       <div style={{
         position: 'absolute',
-        backgroundColor: '#696',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        border: '1px solid #fff',
         borderRadius: '50%',
         opacity: 0.8,
         pointerEvents: 'none',
