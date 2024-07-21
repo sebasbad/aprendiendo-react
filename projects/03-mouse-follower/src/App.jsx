@@ -38,7 +38,7 @@ const FollowMouse = () => {
   // undefined -> se ejecuta cada vez que se renderiza el componente
 
   // change body className
-  useEffect(() => {
+  useEffect(() => { // cleanup method
     document.body.classList.toggle('no-cursor', enabled)
 
     return () => {
