@@ -54,9 +54,14 @@ const FollowMouse = () => {
 }
 
 function App () {
+  const [mounted, setMounted] = useState(true)
+
   return (
     <main>
-      <FollowMouse />
+      {mounted && <FollowMouse />}
+      <button onClick={() => { setMounted(!mounted) }}>
+        Toggle mounted FollowMounse component
+      </button>
     </main>
   )
 }
