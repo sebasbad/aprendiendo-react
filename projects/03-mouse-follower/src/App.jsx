@@ -7,12 +7,24 @@ function App () {
     console.log('effect', [enabled])
   }, [enabled])
   return (
-    <>
-      <h3>Proyecto 3</h3>
+    <main>
+      <div style={{
+        position: 'absolute',
+        backgroundColor: '#696',
+        borderRadius: '50%',
+        opacity: 0.8,
+        pointerEvents: 'none',
+        left: -20,
+        top: -20,
+        width: 40,
+        height: 40,
+        transform: 'translate(0px, 0px)'
+      }}
+      />
       <button onClick={() => setEnabled(!enabled)}>
         {enabled ? 'Desactivar' : 'Activar'} seguir puntero
       </button>
-    </>
+    </main>
   )
 }
 
