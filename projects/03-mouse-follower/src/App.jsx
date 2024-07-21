@@ -4,6 +4,7 @@ const FollowMouse = () => {
   const [enabled, setEnabled] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
 
+  // pointer move effect
   useEffect(() => {
     console.log('effect', [enabled])
 
@@ -29,6 +30,15 @@ const FollowMouse = () => {
       // un objeto: getEventListeners(window)
     }
   }, [enabled])
+
+  // change body className
+  useEffect(() => {
+    document.body.classList.toggle('no-cursor', enabled)
+
+    return () => {
+      document.body.classList.remove('no-cursor')
+    }
+  })
 
   return (
     <>
