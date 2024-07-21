@@ -17,13 +17,16 @@ function App () {
       window.addEventListener('pointermove', handleMove)
     }
 
-    // la función devuelta se ejecuta cuando se desmonte el componente
-    // asociado a este useEffect y cada vez que cambie la dependencia del useEffect
+    // cleanup
+    // -> cuando el componente se desmonta
+    // -> cuando cambian las dependencias, antes de ejecutar
+    //    el efecto de nuevo
     return () => {
-      // aquí el código para limpiar el efecto
+      console.log('cleanup')
       window.removeEventListener('pointermove', handleMove)
-      // en la consola del navegador se pueden ver las suscripciones
-      // a los eventos de un objeto: getEventListeners(window)
+      // sólo funciona en chromium: en la consola del navegador
+      // se pueden ver las suscripciones a los eventos de
+      // un objeto: getEventListeners(window)
     }
   }, [enabled])
 
