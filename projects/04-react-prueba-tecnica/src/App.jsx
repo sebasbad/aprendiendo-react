@@ -8,10 +8,20 @@ export function App () {
 
   // Importante conocer fetch pq a veces no se permite usar
   // React Query, SWR, axios, apollo
+  //   useEffect(() => {
+  //     fetch(CAT_ENDPOINT_RANDOM_FACT_URL)
+  //       .then(res => res.json())
+  //       .then(data => setFact(data.fact))
+  //   }, /* la primera vez sólo */ [])
+
   useEffect(() => {
-    fetch(CAT_ENDPOINT_RANDOM_FACT_URL)
-      .then(res => res.json())
-      .then(data => setFact(data.fact))
+    async function getRandomCatFact () {
+      const res = await fetch(CAT_ENDPOINT_RANDOM_FACT_URL)
+      const json = await res.json()
+      setFact(json.fact)
+    }
+
+    getRandomCatFact()
   }, /* la primera vez sólo */ [])
 
   return (
