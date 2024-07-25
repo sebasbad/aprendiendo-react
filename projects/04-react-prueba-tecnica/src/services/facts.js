@@ -8,3 +8,10 @@ export const getRandomFact = () => {
       return fact
     })
 }
+
+export const getRandomFactAsyncAwait = async () => {
+  const res = await fetch(CAT_ENDPOINT_RANDOM_FACT_URL)
+  const data = await res.json()
+  const { fact } = data
+  return fact
+}
