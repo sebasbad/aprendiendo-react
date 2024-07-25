@@ -12,7 +12,7 @@ export function App () {
   // React Query, SWR, axios, apollo
   // para recuperar la cita al cargar la paágina
   useEffect(() => {
-    getRandomFact().then(setFact)
+    getRandomFact().then(newFact => setFact(newFact))
     // getRandomFactAsyncAwait().then(setFact)
   }, /* la primera vez sólo */ [])
 
@@ -41,7 +41,7 @@ export function App () {
     // const newFact = await getRandomFactAsyncAwait()
     // const newFact = await getRandomFact()
     // setFact(newFact)
-    getRandomFact().then(setFact)
+    getRandomFact().then(newFact => setFact(newFact))
   }
 
   return (
