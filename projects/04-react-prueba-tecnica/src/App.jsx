@@ -11,7 +11,10 @@ export function App () {
   // Importante conocer fetch pq a veces no se permite usar
   // React Query, SWR, axios, apollo
   // para recuperar la cita al cargar la paágina
-  useEffect(() => getRandomFact(setFact), /* la primera vez sólo */ [])
+  useEffect(() => {
+    const fact = getRandomFact()
+    setFact(fact)
+  }, /* la primera vez sólo */ [])
 
   // para recuperar la imagen cada vez que tenemos una cita nuneva
   useEffect(() => {
@@ -34,7 +37,10 @@ export function App () {
       })
   }, [fact])
 
-  const handleClick = () => getRandomFact(setFact)
+  const handleClick = () => {
+    const fact = getRandomFact()
+    setFact(fact)
+  }
 
   return (
     <main>
