@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { getRandomFact, getRandomFactAsyncAwait } from './services/facts.js'
+import { getRandomFact } from './services/facts.js'
 
 const CAR_ENDPOINNT_RANDOM_IMAGE_URL = 'https://api.thecatapi.com/v1/images/search'
+
+function useCatImage () {
+  return 'https://api.thecatapi.com/v1/images/search'
+}
 
 export function App () {
   const [fact, setFact] = useState()
   const [imageUrl, setImageUrl] = useState()
+  const catImageUrl = useCatImage()
 
   // Importante conocer fetch pq a veces no se permite usar
   // React Query, SWR, axios, apollo
