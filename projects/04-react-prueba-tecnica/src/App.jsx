@@ -39,9 +39,9 @@ export function App () {
 
   const handleClick = async () => {
     // const newFact = await getRandomFactAsyncAwait()
-    const newFact = await getRandomFact()
-    console.log(newFact)
-    setFact(newFact)
+    // const newFact = await getRandomFact()
+    // setFact(newFact)
+    getRandomFact().then(setFact)
   }
 
   return (
