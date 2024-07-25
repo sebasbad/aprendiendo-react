@@ -10,30 +10,36 @@ export function App () {
 
   // Importante conocer fetch pq a veces no se permite usar
   // React Query, SWR, axios, apollo
+  // para recuperar la cita al cargar la paágina
   useEffect(() => {
     fetch(CAT_ENDPOINT_RANDOM_FACT_URL)
       .then(res => res.json())
       .then(data => {
         const { fact } = data
         setFact(fact)
-
-        const firstWord = fact.split(' ')[0]
-        const first3Words = fact.split(' ').slice(0, 3).join(' ')
-        const first3WordsNoSlice = fact.split(' ', 3).join(' ')
-        console.log(firstWord)
-        console.log(first3Words)
-        console.log(first3WordsNoSlice)
-
-        fetch(CAR_ENDPOINNT_RANDOM_IMAGE_URL)
-          .then(res => res.json())
-          .then(data => {
-            console.log(data)
-            const { url } = data[0]
-            console.log(url)
-            setImageUrl(url)
-          })
       })
   }, /* la primera vez sólo */ [])
+
+  // para recuperar la imagen cada vez que tenemos una cita nuneva
+  useEffect(() => {
+    if (!fact) { return }
+
+    const firstWord = fact.split(' ')[0]
+    const first3Words = fact.split(' ').slice(0, 3).join(' ')
+    const first3WordsNoSlice = fact.split(' ', 3).join(' ')
+    console.log(firstWord)
+    console.log(first3Words)
+    console.log(first3WordsNoSlice)
+
+    fetch(CAR_ENDPOINNT_RANDOM_IMAGE_URL)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        const { url } = data[0]
+        console.log(url)
+        setImageUrl(url)
+      })
+  }, [fact])
 
   return (
     <main>
