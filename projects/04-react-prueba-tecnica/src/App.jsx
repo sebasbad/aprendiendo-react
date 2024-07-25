@@ -38,10 +38,8 @@ export function App () {
   return (
     <main>
       <h1>App de gatitos</h1>
-      <section>
-        {fact && <p>{fact}</p>}
-        {imageUrl && <img src={imageUrl} alt={`Image extracted using the first three words from '${fact}'`} />}
-      </section>
+      {fact && <p>{fact}</p>}
+      {imageUrl && <img src={imageUrl} alt={`Image extracted using the first three words from '${fact}'`} />}
     </main>
   )
 }
