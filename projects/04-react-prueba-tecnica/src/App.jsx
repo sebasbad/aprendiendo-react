@@ -7,13 +7,20 @@ const CAR_ENDPOINNT_RANDOM_IMAGE_URL = 'https://api.thecatapi.com/v1/images/sear
 export function App () {
   const [fact, setFact] = useState()
   const [imageUrl, setImageUrl] = useState()
+  const [factError, setFactError] = useState()
 
   // Importante conocer fetch pq a veces no se permite usar
   // React Query, SWR, axios, apollo
   // para recuperar la cita al cargar la paágina
   useEffect(() => {
     fetch(CAT_ENDPOINT_RANDOM_FACT_URL)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          setFactError('No se ha podido recuperar la cita')
+        }
+
+        return res.json()
+      })
       .then(data => {
         const { fact } = data
         setFact(fact)
