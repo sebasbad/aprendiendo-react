@@ -16,7 +16,7 @@ export function App () {
     fetch(CAT_ENDPOINT_RANDOM_FACT_URL)
       .then(res => {
         if (!res.ok) {
-          setFactError('No se ha podido recuperar la cita')
+          throw new Error('No se ha podido recuperar la cita')
         }
 
         return res.json()
@@ -24,6 +24,9 @@ export function App () {
       .then(data => {
         const { fact } = data
         setFact(fact)
+      }).catch((err) => {
+        // aqui va directamente si ha habido un problema con la request, no con la response
+        console.error(err)
       })
   }, /* la primera vez sólo */ [])
 
