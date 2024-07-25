@@ -1,26 +1,17 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import { getRandomFact } from './services/facts.js'
 
-const CAT_ENDPOINT_RANDOM_FACT_URL = 'https://catfact.ninja/fact'
 const CAR_ENDPOINNT_RANDOM_IMAGE_URL = 'https://api.thecatapi.com/v1/images/search'
 
 export function App () {
   const [fact, setFact] = useState()
   const [imageUrl, setImageUrl] = useState()
 
-  const getRandomFact = () => {
-    fetch(CAT_ENDPOINT_RANDOM_FACT_URL)
-      .then(res => { return res.json() })
-      .then(data => {
-        const { fact } = data
-        setFact(fact)
-      })
-  }
-
   // Importante conocer fetch pq a veces no se permite usar
   // React Query, SWR, axios, apollo
   // para recuperar la cita al cargar la paágina
-  useEffect(getRandomFact, /* la primera vez sólo */ [])
+  useEffect(() => getRandomFact(setFact), /* la primera vez sólo */ [])
 
   // para recuperar la imagen cada vez que tenemos una cita nuneva
   useEffect(() => {
@@ -43,7 +34,7 @@ export function App () {
       })
   }, [fact])
 
-  const handleClick = getRandomFact
+  const handleClick = () => getRandomFact(setFact)
 
   return (
     <main>
