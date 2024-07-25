@@ -25,5 +25,5 @@ export function useCatImage ({ fact }) {
       })
   }, [fact])
 
-  return { imageUrl }
+  return { imageUrl, fact }
 }
