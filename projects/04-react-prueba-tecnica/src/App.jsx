@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { getRandomFact } from './services/facts.js'
+import { getRandomFact, getRandomFactAsyncAwait } from './services/facts.js'
 
 const CAR_ENDPOINNT_RANDOM_IMAGE_URL = 'https://api.thecatapi.com/v1/images/search'
 
@@ -12,8 +12,8 @@ export function App () {
   // React Query, SWR, axios, apollo
   // para recuperar la cita al cargar la paágina
   useEffect(() => {
-    const newFact = getRandomFact()
-    setFact(newFact)
+    getRandomFact().then(setFact)
+    // getRandomFactAsyncAwait().then(setFact)
   }, /* la primera vez sólo */ [])
 
   // para recuperar la imagen cada vez que tenemos una cita nuneva
@@ -37,8 +37,10 @@ export function App () {
       })
   }, [fact])
 
-  const handleClick = () => {
-    const newFact = getRandomFact()
+  const handleClick = async () => {
+    // const newFact = await getRandomFactAsyncAwait()
+    const newFact = await getRandomFact()
+    console.log(newFact)
     setFact(newFact)
   }
 
