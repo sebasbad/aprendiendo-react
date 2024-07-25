@@ -35,7 +35,7 @@ export function App () {
   }, /* la primera vez sólo */ [])
 
   return (
-    <main>
+    <main style={{ display: 'flex', flexDirection: 'column' }}>
       <h1>App de gatitos</h1>
       {fact && <p>{fact}</p>}
       {imageUrl && <img src={imageUrl} alt={`Image extracted using the first three words from '${fact}'`} />}
