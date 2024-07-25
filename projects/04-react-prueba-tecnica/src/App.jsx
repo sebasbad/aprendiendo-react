@@ -12,8 +12,8 @@ export function App () {
   // React Query, SWR, axios, apollo
   // para recuperar la cita al cargar la paágina
   useEffect(() => {
-    const fact = getRandomFact()
-    setFact(fact)
+    const newFact = getRandomFact()
+    setFact(newFact)
   }, /* la primera vez sólo */ [])
 
   // para recuperar la imagen cada vez que tenemos una cita nuneva
@@ -38,8 +38,8 @@ export function App () {
   }, [fact])
 
   const handleClick = () => {
-    const fact = getRandomFact()
-    setFact(fact)
+    const newFact = getRandomFact()
+    setFact(newFact)
   }
 
   return (
