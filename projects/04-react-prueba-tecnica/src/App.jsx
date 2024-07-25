@@ -3,24 +3,27 @@ import { getRandomFact } from './services/facts.js'
 import { useCatImage } from './hooks/useCatImage.js'
 import './App.css'
 
-export function App () {
+const useCatFact = () => {
   const [fact, setFact] = useState()
-  const { imageUrl } = useCatImage({ fact })
+
+  const refreshFact = () => {
+    getRandomFact().then(newFact => setFact(newFact))
+    // getRandomFactAsyncAwait().then(setFact)
+  }
 
   // Importante conocer fetch pq a veces no se permite usar
   // React Query, SWR, axios, apollo
   // para recuperar la cita al cargar la paágina
-  useEffect(() => {
-    getRandomFact().then(newFact => setFact(newFact))
-    // getRandomFactAsyncAwait().then(setFact)
-  }, /* la primera vez sólo */ [])
+  useEffect(refreshFact, /* la primera vez sólo */ [])
 
-  const handleClick = async () => {
-    // const newFact = await getRandomFactAsyncAwait()
-    // const newFact = await getRandomFact()
-    // setFact(newFact)
-    getRandomFact().then(newFact => setFact(newFact))
-  }
+  return { fact, refreshFact }
+}
+
+export function App () {
+  const { fact, refreshFact } = useCatFact()
+  const { imageUrl } = useCatImage({ fact })
+
+  const handleClick = refreshFact
 
   return (
     <main>
