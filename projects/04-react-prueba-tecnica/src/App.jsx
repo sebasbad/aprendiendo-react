@@ -8,17 +8,19 @@ export function App () {
   const [fact, setFact] = useState()
   const [imageUrl, setImageUrl] = useState()
 
-  // Importante conocer fetch pq a veces no se permite usar
-  // React Query, SWR, axios, apollo
-  // para recuperar la cita al cargar la paágina
-  useEffect(() => {
+  const getRandomFact = () => {
     fetch(CAT_ENDPOINT_RANDOM_FACT_URL)
       .then(res => { return res.json() })
       .then(data => {
         const { fact } = data
         setFact(fact)
       })
-  }, /* la primera vez sólo */ [])
+  }
+
+  // Importante conocer fetch pq a veces no se permite usar
+  // React Query, SWR, axios, apollo
+  // para recuperar la cita al cargar la paágina
+  useEffect(getRandomFact, /* la primera vez sólo */ [])
 
   // para recuperar la imagen cada vez que tenemos una cita nuneva
   useEffect(() => {
@@ -41,14 +43,7 @@ export function App () {
       })
   }, [fact])
 
-  const handleClick = () => {
-    fetch(CAT_ENDPOINT_RANDOM_FACT_URL)
-      .then(res => { return res.json() })
-      .then(data => {
-        const { fact } = data
-        setFact(fact)
-      })
-  }
+  const handleClick = getRandomFact
 
   return (
     <main>
