@@ -25,7 +25,7 @@ export function App () {
         const { fact } = data
         setFact(fact)
       }).catch((err) => {
-        // aqui va directamente si ha habido un problema con la request, no con la response
+        // tannto si hay un error con la request, o con la response
         console.error(err)
       })
   }, /* la primera vez sólo */ [])
