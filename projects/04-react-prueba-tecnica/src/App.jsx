@@ -4,22 +4,8 @@ import { getRandomFact } from './services/facts.js'
 
 const CAR_ENDPOINNT_RANDOM_IMAGE_URL = 'https://api.thecatapi.com/v1/images/search'
 
-function useCatImage () {
-  return 'https://api.thecatapi.com/v1/images/search'
-}
-
-export function App () {
-  const [fact, setFact] = useState()
+function useCatImage ({ fact }) {
   const [imageUrl, setImageUrl] = useState()
-  const catImageUrl = useCatImage()
-
-  // Importante conocer fetch pq a veces no se permite usar
-  // React Query, SWR, axios, apollo
-  // para recuperar la cita al cargar la paágina
-  useEffect(() => {
-    getRandomFact().then(newFact => setFact(newFact))
-    // getRandomFactAsyncAwait().then(setFact)
-  }, /* la primera vez sólo */ [])
 
   // para recuperar la imagen cada vez que tenemos una cita nuneva
   useEffect(() => {
@@ -41,6 +27,21 @@ export function App () {
         setImageUrl(url)
       })
   }, [fact])
+
+  return { imageUrl }
+}
+
+export function App () {
+  const [fact, setFact] = useState()
+  const { imageUrl } = useCatImage({ fact })
+
+  // Importante conocer fetch pq a veces no se permite usar
+  // React Query, SWR, axios, apollo
+  // para recuperar la cita al cargar la paágina
+  useEffect(() => {
+    getRandomFact().then(newFact => setFact(newFact))
+    // getRandomFactAsyncAwait().then(setFact)
+  }, /* la primera vez sólo */ [])
 
   const handleClick = async () => {
     // const newFact = await getRandomFactAsyncAwait()
