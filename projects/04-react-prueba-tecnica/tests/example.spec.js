@@ -10,9 +10,10 @@ test('app shows random fact and image', async ({ page }) => {
   const text = await page.getByRole('paragraph')
   const image = await page.getByRole('img')
 
-  const textContent = await text.textContent
+  const textContent = await text.textContent()
   const imageSrc = await image.getAttribute('src')
 
+  console.log({ textContent, imageSrc })
   await expect(textContent?.length).toBeGreaterThan(0)
   await expect(imageSrc?.startsWith(CAT_IMAGE_URL_PREFIX)).toBeTruthy()
 })
