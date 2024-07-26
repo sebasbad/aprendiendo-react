@@ -1,5 +1,5 @@
 // @ts-check
-const { test, expect } = require('@playwright/test')
+import { test, expect } from '@playwright/test'
 
 const CAT_IMAGE_URL_PREFIX = 'https://cdn2.thecatapi.com/images/'
 const LOCAL_HOST_URL = 'http://localhost:5173/'
