@@ -1,4 +1,4 @@
-export function ListOfMovies ({ movies }) {
+function ListOfMovies ({ movies }) {
   return (
     <ul>
       {
@@ -14,7 +14,7 @@ export function ListOfMovies ({ movies }) {
   )
 }
 
-export function NoMoviesResult () {
+function NoMoviesResult () {
   return (
     <p>No se encontraron película para esta búsqueda</p>
   )
