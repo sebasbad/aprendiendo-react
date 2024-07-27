@@ -6,6 +6,8 @@ function App () {
   const movies = withResults.Search
   const hasMovies = movies?.length > 0
 
+  // the render* functions should be a component because:
+  // - this function is recreated every time the app is rendered
   const renderMovies = () => {
     return (
       <ul>
