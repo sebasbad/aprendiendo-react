@@ -3,7 +3,7 @@ import './App.css'
 // durante todo el lifecycle del componente; muy útil para guardar datos
 // mutables como un id, un elemento del DOM, un contador, etc. y que cada
 // vez que cambia NO vuelve a renderizar el componente, NO dispara un nuevo
-// renderizado
+// renderizado; permite crear un valor mutable que persiste entre renderizados
 import { useRef } from 'react'
 import { Movies } from './components/Movies'
 import { useMovies } from './hooks/useMovies'
