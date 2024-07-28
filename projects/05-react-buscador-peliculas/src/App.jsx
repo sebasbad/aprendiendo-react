@@ -12,13 +12,21 @@ function App () {
   const { movies } = useMovies()
   const inputRef = useRef()
 
+  const handleClick = () => {
+    // el input element es el current del ref
+    const inputEl = inputRef.current
+    // el valor del input element es el value del current del ref
+    const value = inputEl.value
+    console.log(value)
+  }
+
   return (
     <div className='page'>
       <header>
         <h1>Buscador de películas</h1>
         <form className='form'>
           <input ref={inputRef} type='text' placeholder='Avengers, Star Wars, The Matrix ... ' />
-          <button type='submit'>Buscar</button>
+          <button onClick={handleClick} type='submit'>Buscar</button>
         </form>
       </header>
       <main>
