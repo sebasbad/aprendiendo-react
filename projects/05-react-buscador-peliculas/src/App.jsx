@@ -18,6 +18,7 @@ function App () {
     // el valor del input element es el value del current del ref
     const value = inputEl.value
     console.log(value)
+    alert(value)
   }
 
   return (
