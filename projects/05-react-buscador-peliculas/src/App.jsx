@@ -10,13 +10,14 @@ import { useMovies } from './hooks/useMovies'
 
 function App () {
   const { movies } = useMovies()
+  const inputRef = useRef()
 
   return (
     <div className='page'>
       <header>
         <h1>Buscador de películas</h1>
         <form className='form'>
-          <input type='text' placeholder='Avengers, Star Wars, The Matrix ... ' />
+          <input ref={inputRef} type='text' placeholder='Avengers, Star Wars, The Matrix ... ' />
           <button type='submit'>Buscar</button>
         </form>
       </header>
