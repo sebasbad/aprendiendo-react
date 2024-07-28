@@ -3,7 +3,7 @@ import withResults from './mocks/with-results.json'
 import noResults from './mocks/no-results.json'
 import { Movies } from './components/Movies'
 
-function App () {
+export function useMovies () {
   const movies = withResults.Search
   const mappedMovies = movies?.map(movie => ({
     id: movie.imdbID,
@@ -11,6 +11,12 @@ function App () {
     year: movie.Year,
     poster: movie.Poster
   }))
+
+  return { movies: mappedMovies }
+}
+
+function App () {
+  const { movies: mappedMovies } = useMovies()
 
   return (
     <div className='page'>
