@@ -4,21 +4,18 @@ import './App.css'
 // mutables como un id, un elemento del DOM, un contador, etc. y que cada
 // vez que cambia NO vuelve a renderizar el componente, NO dispara un nuevo
 // renderizado; permite crear un valor mutable que persiste entre renderizados
-import { useRef } from 'react'
+// import { useRef } from 'react'
 import { Movies } from './components/Movies'
 import { useMovies } from './hooks/useMovies'
 
 function App () {
   const { movies } = useMovies()
-  const inputRef = useRef()
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // el input element es el current del ref
-    const inputEl = inputRef.current
-    // el valor del input element es el value del current del ref
-    const value = inputEl.value
-    console.log(value)
+    const fields = new window.FormData(event.target)
+    const query = fields.get('query')
+    console.log(query)
   }
 
   return (
@@ -26,7 +23,7 @@ function App () {
       <header>
         <h1>Buscador de películas</h1>
         <form className='form' onSubmit={handleSubmit}>
-          <input ref={inputRef} type='text' placeholder='Avengers, Star Wars, The Matrix ... ' />
+          <input name='query' type='text' placeholder='Avengers, Star Wars, The Matrix ... ' />
           <button type='submit'>Buscar</button>
         </form>
       </header>
