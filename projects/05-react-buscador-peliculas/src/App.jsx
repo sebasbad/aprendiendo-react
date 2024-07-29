@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 // useRef es un hook que permite crear una referencia mutable que persiste
 // durante todo el lifecycle del componente; muy útil para guardar datos
@@ -10,12 +11,15 @@ import { useMovies } from './hooks/useMovies'
 
 function App () {
   const { movies } = useMovies()
+  const [query, setQuery] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // All the form fields
-    const fields = Object.fromEntries(new window.FormData(event.target))
-    console.log(fields.query)
+    console.log({ query })
+  }
+
+  const handleChange = (event) => {
+    setQuery(event.target.value)
   }
 
   return (
@@ -23,7 +27,7 @@ function App () {
       <header>
         <h1>Buscador de películas</h1>
         <form className='form' onSubmit={handleSubmit}>
-          <input name='query' type='text' placeholder='Avengers, Star Wars, The Matrix ... ' />
+          <input onChange={handleChange} value={query} name='query' type='text' placeholder='Avengers, Star Wars, The Matrix ... ' />
           <button type='submit'>Buscar</button>
         </form>
       </header>
