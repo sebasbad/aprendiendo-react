@@ -30,6 +30,8 @@ function App () {
 
   const handleChange = (event) => {
     const newQuery = event.target.value
+    // se pueden hacer pre-validaciones
+    if (newQuery.startsWith(' ')) { return }
     setQuery(newQuery)
 
     // el set query es asíncrono, así que el valor de query
