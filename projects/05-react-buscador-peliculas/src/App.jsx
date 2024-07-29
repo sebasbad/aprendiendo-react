@@ -30,11 +30,9 @@ function App () {
 
   const handleChange = (event) => {
     setQuery(event.target.value)
-  }
 
-  useEffect(() => {
-    // validacione mediante use effect directamente con react
-    // hay librerías que se encargan de estas cosas
+    // el set query es asíncrono, así que el valor de query
+    // podría no estar actualizado en este punto
     if (query === '') {
       setError('No se puede buscar una película vacía')
       return
@@ -51,7 +49,7 @@ function App () {
     }
 
     setError(null)
-  }, [query])
+  }
 
   return (
     <div className='page'>
