@@ -13,6 +13,7 @@ function App () {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    // All the form fields
     const fields = Object.fromEntries(new window.FormData(event.target))
     console.log(fields.query)
   }
