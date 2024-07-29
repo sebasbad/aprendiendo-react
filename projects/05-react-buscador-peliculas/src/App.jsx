@@ -33,26 +33,28 @@ function App () {
     // se pueden hacer pre-validaciones
     if (newQuery.startsWith(' ')) { return }
     setQuery(newQuery)
+  }
 
+  useEffect(() => {
     // el set query es asíncrono, así que el valor de query
     // podría no estar actualizado en este punto
-    if (newQuery === '') {
+    if (query === '') {
       setError('No se puede buscar una película vacía')
       return
     }
 
-    if (newQuery.match(/^\d+$/)) {
+    if (query.match(/^\d+$/)) {
       setError('No se puede buscar una película con un número')
       return
     }
 
-    if (newQuery.length < 3) {
+    if (query.length < 3) {
       setError('La búsqueda debe tener al menos 3 caracteres')
       return
     }
 
     setError(null)
-  }
+  }, [query])
 
   return (
     <div className='page'>
