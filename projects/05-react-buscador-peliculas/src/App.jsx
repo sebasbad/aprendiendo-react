@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 // useRef es un hook que permite crear una referencia mutable que persiste
 // durante todo el lifecycle del componente; muy útil para guardar datos
@@ -12,6 +12,7 @@ import { useMovies } from './hooks/useMovies'
 function App () {
   const { movies } = useMovies()
   const [query, setQuery] = useState('')
+  const [error, setError] = useState(null)
 
   // acceso a formularios
   // - de manera no controlada: accediendo directamente al DOM
@@ -31,6 +32,27 @@ function App () {
     setQuery(event.target.value)
   }
 
+  useEffect(() => {
+    // validacione mediante use effect directamente con react
+    // hay librerías que se encargan de estas cosas
+    if (query === '') {
+      setError('No se puede buscar una película vacía')
+      return
+    }
+
+    if (query.match(/^\d+$/)) {
+      setError('No se puede buscar una película con un número')
+      return
+    }
+
+    if (query.length < 3) {
+      setError('La búsqueda debe tener al menos 3 caracteres')
+      return
+    }
+
+    setError(null)
+  }, [query])
+
   return (
     <div className='page'>
       <header>
@@ -39,6 +61,7 @@ function App () {
           <input onChange={handleChange} value={query} name='query' type='text' placeholder='Avengers, Star Wars, The Matrix ... ' />
           <button type='submit'>Buscar</button>
         </form>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </header>
       <main>
         <Movies movies={movies} />
