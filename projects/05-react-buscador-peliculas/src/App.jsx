@@ -29,21 +29,22 @@ function App () {
   }
 
   const handleChange = (event) => {
-    setQuery(event.target.value)
+    const newQuery = event.target.value
+    setQuery(newQuery)
 
     // el set query es asíncrono, así que el valor de query
     // podría no estar actualizado en este punto
-    if (query === '') {
+    if (newQuery === '') {
       setError('No se puede buscar una película vacía')
       return
     }
 
-    if (query.match(/^\d+$/)) {
+    if (newQuery.match(/^\d+$/)) {
       setError('No se puede buscar una película con un número')
       return
     }
 
-    if (query.length < 3) {
+    if (newQuery.length < 3) {
       setError('La búsqueda debe tener al menos 3 caracteres')
       return
     }
