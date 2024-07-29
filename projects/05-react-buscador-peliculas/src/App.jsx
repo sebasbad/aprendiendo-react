@@ -13,8 +13,8 @@ function App () {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const { query } = Object.fromEntries(new window.FormData(event.target))
-    console.log(query)
+    const fields = Object.fromEntries(new window.FormData(event.target))
+    console.log(fields.query)
   }
 
   return (
