@@ -14,6 +14,13 @@ function App () {
   const [query, setQuery] = useState('')
   const [error, setError] = useState(null)
 
+  console.log('render')
+
+  let i = 0
+  i++
+
+  console.log(i)
+
   // acceso a formularios
   // - de manera no controlada: accediendo directamente al DOM
   //   - ventajas: rapidez, no depende de react, etc.
