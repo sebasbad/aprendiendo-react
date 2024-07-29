@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 // useRef es un hook que permite crear una referencia mutable que persiste
 // durante todo el lifecycle del componente; muy útil para guardar datos
@@ -14,12 +14,12 @@ function App () {
   const [query, setQuery] = useState('')
   const [error, setError] = useState(null)
 
-  console.log('render')
+  console.log('render') //
 
-  let i = 0
-  i++
+  const counter = useRef(0)
+  counter.current++
 
-  console.log(i)
+  console.log(counter.current)
 
   // acceso a formularios
   // - de manera no controlada: accediendo directamente al DOM
