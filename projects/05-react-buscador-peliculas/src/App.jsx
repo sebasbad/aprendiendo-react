@@ -13,6 +13,15 @@ function App () {
   const { movies } = useMovies()
   const [query, setQuery] = useState('')
 
+  // acceso a formularios
+  // - de manera no controlada: accediendo directamente al DOM
+  //   - ventajas: rapidez, no depende de react, etc.
+  // - de manera controlada por react
+  //   - desventajas: mucho más lento pq el código se ejecuta cada vez que
+  //     se renderiza el componente
+  //   - ventajas: acceso a los datos del formulario sin preocuparse por el DOM,
+  //     validacinoes de formularios mucho más controladas
+
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log({ query })
