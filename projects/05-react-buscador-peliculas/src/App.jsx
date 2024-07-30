@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 // useRef es un hook que permite crear una referencia mutable que persiste
 // durante todo el lifecycle del componente; muy útil para guardar datos
@@ -12,8 +12,15 @@ import { useMovies } from './hooks/useMovies'
 function useSearch () {
   const [search, setSearch] = useState('')
   const [error, setError] = useState(null)
+  const isFirstInput = useRef(true)
 
   useEffect(() => {
+    // otro uso de useRef: ejecutar un código sólo la primera vez
+    if (isFirstInput.current) {
+      isFirstInput.current = search === ''
+      return
+    }
+
     // el set query es asíncrono, así que el valor de query
     // podría no estar actualizado en este punto
     if (search === '') {
