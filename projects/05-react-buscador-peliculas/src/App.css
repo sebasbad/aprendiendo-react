@@ -28,3 +28,16 @@ form {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 32px;
 }
+
+.movie {
+    text-align: center;
+}
+
+.movie h3, p {
+    margin: 0;
+}
+
+.movie img {
+    border-radius: 8px;
+    margin-top: 16px;
+}
