@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 // useRef es un hook que permite crear una referencia mutable que persiste
 // durante todo el lifecycle del componente; muy útil para guardar datos
@@ -9,17 +9,39 @@ import './App.css'
 import { Movies } from './components/Movies'
 import { useMovies } from './hooks/useMovies'
 
-function App () {
-  const { movies } = useMovies()
-  const [query, setQuery] = useState('')
+function useSearch () {
+  const [search, setSearch] = useState('')
   const [error, setError] = useState(null)
 
+  useEffect(() => {
+    // el set query es asíncrono, así que el valor de query
+    // podría no estar actualizado en este punto
+    if (search === '') {
+      setError('No se puede buscar una película vacía')
+      return
+    }
+
+    if (search.match(/^\d+$/)) {
+      setError('No se puede buscar una película con un número')
+      return
+    }
+
+    if (search.length < 3) {
+      setError('La búsqueda debe tener al menos 3 caracteres')
+      return
+    }
+
+    setError(null)
+  }, [search])
+
+  return { search, setSearch, error }
+}
+
+function App () {
+  const { movies } = useMovies()
+  const { search, setSearch, error } = useSearch()
+
   console.log('render') //
-
-  const counter = useRef(0)
-  counter.current++
-
-  console.log(counter.current)
 
   // acceso a formularios
   // - de manera no controlada: accediendo directamente al DOM
@@ -32,36 +54,12 @@ function App () {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log({ query })
+    console.log({ search })
   }
 
   const handleChange = (event) => {
-    const newQuery = event.target.value
-    // se pueden hacer pre-validaciones
-    if (newQuery.startsWith(' ')) { return }
-    setQuery(newQuery)
+    setSearch(event.target.value)
   }
-
-  useEffect(() => {
-    // el set query es asíncrono, así que el valor de query
-    // podría no estar actualizado en este punto
-    if (query === '') {
-      setError('No se puede buscar una película vacía')
-      return
-    }
-
-    if (query.match(/^\d+$/)) {
-      setError('No se puede buscar una película con un número')
-      return
-    }
-
-    if (query.length < 3) {
-      setError('La búsqueda debe tener al menos 3 caracteres')
-      return
-    }
-
-    setError(null)
-  }, [query])
 
   return (
     <div className='page'>
@@ -73,7 +71,7 @@ function App () {
               border: '1px solid transparent',
               borderColor: error ? 'red' : 'transparent'
             }}
-            onChange={handleChange} value={query} name='query' type='text' placeholder='Avengers, Star Wars, The Matrix ... '
+            onChange={handleChange} value={search} name='query' type='text' placeholder='Avengers, Star Wars, The Matrix ... '
           />
           <button type='submit'>Buscar</button>
         </form>
