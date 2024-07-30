@@ -1,11 +1,11 @@
 function ListOfMovies ({ movies }) {
   return (
-    <ul>
+    <ul className='movies'>
       {
         // mala práctiva: este componente está muy acoplado a
         // la estructura de la respuesta de la api
         movies.map(movie => (
-          <li key={movie.id}>
+          <li className='movie' key={movie.id}>
             <h3>{movie.title}</h3>
             <p>{movie.year}</p>
             <img src={movie.poster} alt={movie.title} />
