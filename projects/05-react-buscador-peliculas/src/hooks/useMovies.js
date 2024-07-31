@@ -28,5 +28,7 @@ export function useMovies ({ search, sort }) {
     ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
     : movies
 
+  console.log('render', sortedMovies)
+
   return { movies: sortedMovies, getMovies, loading, error }
 }
