@@ -46,7 +46,7 @@ function useSearch () {
 
 function App () {
   const { search, setSearch, error } = useSearch()
-  const { movies, getMoviwes } = useMovies({ search })
+  const { movies, getMovies } = useMovies({ search })
 
   console.log('render') //
 
@@ -62,7 +62,7 @@ function App () {
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log({ search })
-    getMoviwes(search)
+    getMovies(search)
   }
 
   const handleChange = (event) => {
