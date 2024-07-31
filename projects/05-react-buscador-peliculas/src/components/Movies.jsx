@@ -2,8 +2,6 @@ function ListOfMovies ({ movies }) {
   return (
     <ul className='movies'>
       {
-        // mala práctiva: este componente está muy acoplado a
-        // la estructura de la respuesta de la api
         movies.map(movie => (
           <li className='movie' key={movie.id}>
             <h3>{movie.title}</h3>
