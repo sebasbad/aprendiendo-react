@@ -24,11 +24,15 @@ export function useMovies ({ search, sort }) {
     }
   }
 
-  const sortedMovies = sort
-    ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
-    : movies
+  const getSortedMovies = () => {
+    console.log('getSortedMovies')
 
-  console.log('render', sortedMovies)
+    const sortedMovies = sort
+      ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
+      : movies
 
-  return { movies: sortedMovies, getMovies, loading, error }
+    return sortedMovies
+  }
+
+  return { movies: getSortedMovies(), getMovies, loading, error }
 }
