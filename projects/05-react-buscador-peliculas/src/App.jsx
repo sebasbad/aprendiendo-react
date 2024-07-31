@@ -45,8 +45,8 @@ function useSearch () {
 }
 
 function App () {
-  const { movies } = useMovies()
   const { search, setSearch, error } = useSearch()
+  const { movies, getMoviwes } = useMovies({ search })
 
   console.log('render') //
 
@@ -62,6 +62,7 @@ function App () {
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log({ search })
+    getMoviwes(search)
   }
 
   const handleChange = (event) => {
