@@ -16,7 +16,10 @@ export function useMovies ({ search }) {
 
   const getMoviwes = () => {
     if (search) {
-      setResponseMovies(withResults)
+      // setResponseMovies(withResults)
+      fetch(`http://www.omdbapi.com/?s=${search}&apikey=${API_KEY}`)
+        .then(res => res.json())
+        .then(json => setResponseMovies(json))
     } else {
       setResponseMovies(noResults)
     }
