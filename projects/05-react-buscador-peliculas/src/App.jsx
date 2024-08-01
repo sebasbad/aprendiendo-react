@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import './App.css'
 // useRef es un hook que permite crear una referencia mutable que persiste
 // durante todo el lifecycle del componente; muy útil para guardar datos
@@ -61,11 +61,12 @@ function App () {
   //   - ventajas: acceso a los datos del formulario sin preocuparse por el DOM,
   //     validacinoes de formularios mucho más controladas
 
-  console.log('en cada rennder ejecuto esto:')
-  const debounceGetMovies = debounce(search => {
-    console.log('search', search)
-    getMovies({ search })
-  }, 2000)
+  const debounceGetMovies = useCallback(
+    debounce(search => {
+      console.log('search', search)
+      getMovies({ search })
+    }, 300), []
+  )
 
   const handleSubmit = (event) => {
     event.preventDefault()
