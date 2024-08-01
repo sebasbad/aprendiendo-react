@@ -8,7 +8,7 @@ export function useMovies ({ search, sort }) {
   const previousSearch = useRef(search)
 
   const getMovies = useMemo(() => {
-    return async () => {
+    return async ({ search }) => {
       if (search === previousSearch.current) { return }
 
       try {
@@ -24,11 +24,11 @@ export function useMovies ({ search, sort }) {
         setLoading(false)
       }
     }
-  }, [search])
+  }, [])
 
   useEffect(() => {
     console.log('new getMovies received')
-  }, [search])
+  }, [])
 
   // const getSortedMovies = () => {
   //   console.log('getSortedMovies')

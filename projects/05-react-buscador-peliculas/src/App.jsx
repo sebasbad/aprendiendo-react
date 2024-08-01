@@ -63,7 +63,7 @@ function App () {
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log({ search })
-    getMovies(search)
+    getMovies({ search })
   }
 
   const handleChange = (event) => {
