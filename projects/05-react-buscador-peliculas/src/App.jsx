@@ -8,6 +8,7 @@ import './App.css'
 // import { useRef } from 'react'
 import { Movies } from './components/Movies'
 import { useMovies } from './hooks/useMovies'
+import debounce from 'just-debounce-it'
 
 function useSearch () {
   const [search, setSearch] = useState('')
@@ -60,6 +61,12 @@ function App () {
   //   - ventajas: acceso a los datos del formulario sin preocuparse por el DOM,
   //     validacinoes de formularios mucho más controladas
 
+  console.log('en cada rennder ejecuto esto:')
+  const debounceGetMovies = debounce(search => {
+    console.log('search', search)
+    getMovies({ search })
+  }, 2000)
+
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log({ search })
@@ -69,7 +76,7 @@ function App () {
   const handleChange = (event) => {
     const newSearch = event.target.value
     setSearch(newSearch)
-    getMovies({ search: newSearch })
+    debounceGetMovies(newSearch)
   }
 
   const handleSort = () => {
