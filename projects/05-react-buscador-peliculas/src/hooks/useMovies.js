@@ -24,10 +24,6 @@ export function useMovies ({ search, sort }) {
     }
   }, [])
 
-  useEffect(() => {
-    console.log('new getMovies received')
-  }, [])
-
   // utilizar useMemo con mesura: sólo si hay problemas de rendimiento, etc.
   const sortedMovies = useMemo(() => {
     console.log('memoSortedMovies')
