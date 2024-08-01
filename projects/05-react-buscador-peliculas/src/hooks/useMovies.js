@@ -28,16 +28,6 @@ export function useMovies ({ search, sort }) {
     console.log('new getMovies received')
   }, [])
 
-  // const getSortedMovies = () => {
-  //   console.log('getSortedMovies')
-
-  //   const sortedMovies = sort
-  //     ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
-  //     : movies
-
-  //   return sortedMovies
-  // }
-
   // utilizar useMemo con mesura: sólo si hay problemas de rendimiento, etc.
   const sortedMovies = useMemo(() => {
     console.log('memoSortedMovies')
