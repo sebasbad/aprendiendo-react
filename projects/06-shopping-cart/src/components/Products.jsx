@@ -12,7 +12,7 @@ export function Products ({ products }) {
               alt={product.title}
             />
             <div>
-              <strong>{product.title}</strong>
+              <strong>{product.title}</strong> - ${product.price}
             </div>
             <div>
               <button>
