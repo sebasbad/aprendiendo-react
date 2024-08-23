@@ -11,7 +11,7 @@ export function Filters () {
   return (
     <section className='filters'>
       <div>
-        <label htmlFor='price'>Price</label>
+        <label htmlFor='price'>Precio a partir de:</label>
         <input
           type='range'
           id='price'
