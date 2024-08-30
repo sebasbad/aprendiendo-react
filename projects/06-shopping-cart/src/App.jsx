@@ -3,8 +3,7 @@ import { Products } from './components/Products'
 import { products as initialProducts } from './mocks/products'
 import { Header } from './components/Header'
 
-function App () {
-  const [products] = useState(initialProducts)
+function useFilters () {
   const [filters, setFilters] = useState({
     category: 'all',
     minPrice: 0
@@ -21,6 +20,13 @@ function App () {
       )
     })
   }
+
+  return { filterProducts, setFilters }
+}
+
+function App () {
+  const [products] = useState(initialProducts)
+  const { filterProducts, setFilters } = useFilters()
 
   const filteredProducts = filterProducts(products)
 
