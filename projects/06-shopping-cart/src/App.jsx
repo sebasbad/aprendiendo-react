@@ -22,12 +22,12 @@ function useFilters () {
     })
   }
 
-  return { filterProducts, setFilters }
+  return { filters, filterProducts, setFilters }
 }
 
 function App () {
   const [products] = useState(initialProducts)
-  const { filterProducts, setFilters } = useFilters()
+  const { filters, filterProducts, setFilters } = useFilters()
 
   const filteredProducts = filterProducts(products)
 
@@ -35,7 +35,7 @@ function App () {
     <>
       <Header changeFilters={setFilters} />
       <Products products={filteredProducts} />
-      <Footer />
+      <Footer filters={filters} />
     </>
   )
 }
