@@ -30,7 +30,7 @@ export function CartProvider ({ children }) {
   }
 
   const removeFromCart = product => {
-    return setCart(cart.filter(item => item.id !== product.id))
+    setCart(prevState => prevState.filter(item => item.id !== product.id))
   }
 
   const clearCart = () => {
