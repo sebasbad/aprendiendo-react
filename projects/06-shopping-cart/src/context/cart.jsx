@@ -39,6 +39,8 @@ export function CartProvider ({ children }) {
       addToCart,
       clearCart
     }}
-    />
+    >
+      {children}
+    </CartContext.Provider>
   )
 }
