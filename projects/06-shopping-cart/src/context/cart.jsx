@@ -30,17 +30,7 @@ export function CartProvider ({ children }) {
   }
 
   const removeFromCart = product => {
-    const productInCartIndex = cart.findIndex(item => item.id === product.id)
-
-    if (productInCartIndex >= 0) {
-      // producto ya está en el carritp
-      // una forma sería usando structuredClone
-      const newCart = structuredClone(cart)
-      newCart[productInCartIndex].quantity > 1
-        ? newCart[productInCartIndex].quantity -= 1
-        : newCart.splice(productInCartIndex, 1)
-      return setCart(newCart)
-    }
+    return setCart(cart.filter(item => item.id !== product.id))
   }
 
   const clearCart = () => {
