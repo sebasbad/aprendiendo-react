@@ -3,27 +3,27 @@ import { useId, useContext } from 'react'
 import { ClearCartIcon, RemoveFromCartIcon, CartIcon } from './Icons'
 import { useCart } from '../hooks/useCart'
 
-function CartItem () {
+function CartItem ({ thumbnail, price, title, quantity, addToCart }) {
   return (
     <li>
       <img
-        src='https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/thumbnail.png' alt='powder'
+        src={thumbnail} alt={title}
       />
       <div>
-        <strong>Powder</strong> - $14,99
+        <strong>{title}</strong> - ${price}
       </div>
       <footer>
         <small>
-          Qty: 1
+          Qty: {quantity}
         </small>
-        <button>+</button>
+        <button onClick={addToCart}>+</button>
       </footer>
     </li>
   )
 }
 
 export function Cart () {
-  const { clearCart } = useCart()
+  const { cart, clearCart, addToCart } = useCart()
   const cartCheckboxId = useId()
 
   return (
@@ -35,7 +35,11 @@ export function Cart () {
 
       <aside className='cart'>
         <ul>
-          <CartItem />
+          {
+            cart.map(product => (
+              <CartItem key={product.id} addToCart={() => addToCart(product)} {...product} />
+            ))
+          }
         </ul>
         <button onClick={clearCart}>
           <ClearCartIcon />
