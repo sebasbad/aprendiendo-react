@@ -12,8 +12,8 @@ export const updateLocalStorage = state => {
 }
 
 const UPDATE_STATE_BY_ACTION = {
-  [CART_REDUCER_ACTIONS.ADD_TO_CART]: (state, actionPayload) => {
-    const { id } = actionPayload
+  [CART_REDUCER_ACTIONS.ADD_TO_CART]: (state, action) => {
+    const { id } = action.payload
     // check if product already in the cart
     const productInCartIndex = state.findIndex(item => item.id === id)
 
@@ -29,7 +29,7 @@ const UPDATE_STATE_BY_ACTION = {
     const newState = [
       ...state,
       {
-        ...actionPayload, // product
+        ...action.payload, // product
         quantity: 1
       }
     ]
@@ -37,8 +37,9 @@ const UPDATE_STATE_BY_ACTION = {
     updateLocalStorage(newState)
     return newState
   },
-  [CART_REDUCER_ACTIONS.REMOVE_FROM_CART]: (state, actionPayload) => {
-    const { id } = actionPayload
+  [CART_REDUCER_ACTIONS.REMOVE_FROM_CART]: (state, action) => {
+    console.log(state, action)
+    const { id } = action.payload
     const newState = state.filter(item => item.id !== id)
     updateLocalStorage(newState)
     return newState
@@ -50,8 +51,8 @@ const UPDATE_STATE_BY_ACTION = {
 }
 
 export const cartReducer = (state, action) => {
-  const { type: actionType, payload: actionPayload } = action
+  const { type: actionType } = action
 
   const updateState = UPDATE_STATE_BY_ACTION[actionType]
-  return updateState ? updateState(state, actionPayload) : state
+  return updateState ? updateState(state, action) : state
 }
