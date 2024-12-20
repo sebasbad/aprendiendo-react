@@ -45,8 +45,8 @@ const UPDATE_STATE_BY_ACTION = {
     return newState
   },
   [CART_REDUCER_ACTIONS.CLEAR_CART]: () => {
-    updateLocalStorage(cartInitialState)
-    return cartInitialState
+    updateLocalStorage([])
+    return []
   }
 }
 
